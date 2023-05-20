@@ -13,13 +13,13 @@
         @yield('css')
     </head>
     <body class="sb-nav-fixed">
-      @include('Admin.layouts.nav')
+      @include('admins.layouts.nav')
         <div id="layoutSidenav">
-            @include('Admin.layouts.sidebar') 
+            @include('admins.layouts.sidebar') 
             <div id="layoutSidenav_content">
                 <main>
                     @yield('content')
-                    @include('Admin.layouts.footer')
+                    @include('admins.layouts.footer')
                 </main>
               </div>
       

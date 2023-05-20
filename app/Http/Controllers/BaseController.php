@@ -18,6 +18,14 @@ class BaseController extends Controller
         $this->model = $model;
     }
 
+    protected function adminView($view)
+    {
+        return $this->baseAdmin . $view;
+    }
+    protected function websiteView($view)
+    {
+        return $this->baseWebsite . $view;
+    }
     protected function getAll()
     {
         return  $this->model->query();
