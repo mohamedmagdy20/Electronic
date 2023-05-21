@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends BaseController
 {
@@ -32,5 +33,11 @@ class AuthController extends BaseController
             return redirect()->back()->with('error','Invaild Email or Password');
         }
     
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+        return redirect()->route('admin.login.view');
     }
 }

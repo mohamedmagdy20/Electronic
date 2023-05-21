@@ -8,6 +8,7 @@
         <meta name="author" content="" />
         <title>Login Admin</title>
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-light">
@@ -26,11 +27,16 @@
                                                 <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email address</label>
                                             </div>
+                                            @error('email')
+                                                 <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" />
                                                 <label for="inputPassword">Password</label>
                                             </div>
-                                         
+                                            @error('password')
+                                                <span class="text-danger">{{$message}}</span>
+                                             @enderror
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button class="btn btn-primary">Login</button>
                                             </div>
@@ -45,22 +51,21 @@
                     </div>
                 </main>
             </div>
-            {{-- <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div> --}}
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
+        <script>
+          $(document).ready(function() {
+              toastr.options.timeOut = 10000;
+              @if (Session::has('error'))
+                  toastr.error('{{ Session::get('error') }}');
+              @elseif(Session::has('success'))
+                  toastr.success('{{ Session::get('success') }}');
+              @endif
+          });
+    
+      </script>
     </body>
 </html>

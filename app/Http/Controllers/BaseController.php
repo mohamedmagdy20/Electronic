@@ -28,12 +28,12 @@ class BaseController extends Controller
     }
     protected function getAll()
     {
-        return  $this->model->query();
+        return  $this->model->query()->get();
     }
 
     protected function showData($id)
     {
-        return $this->findOrFail($id);        
+        return $this->model->findOrFail($id);        
     }
 
     protected function admin()
@@ -64,4 +64,6 @@ class BaseController extends Controller
           return $this->storeImage($newImage,public_path($path));
         }
     }
+
+
 }
