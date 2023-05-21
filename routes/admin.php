@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,17 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::get('delete/{id}',[AdminController::class,'delete'])->name($route.'delete');
         Route::post('store',[AdminController::class,'store'])->name($route.'store');
         Route::post('update/{id}',[AdminController::class,'update'])->name($route.'update');
+    });
+
+
+    Route::group(['prefix'=>'category'],function(){
+        $route = 'admin.category.';
+        Route::get('/',[CategoryController::class,'index'])->name($route.'index');
+        Route::get('create',[CategoryController::class,'create'])->name($route.'create');
+        Route::get('edit/{id}',[CategoryController::class,'edit'])->name($route.'edit');
+        Route::get('delete/{id}',[CategoryController::class,'delete'])->name($route.'delete');
+        Route::post('store',[CategoryController::class,'store'])->name($route.'store');
+        Route::post('update/{id}',[CategoryController::class,'update'])->name($route.'update');
     });
 
 
