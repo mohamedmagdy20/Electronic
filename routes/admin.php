@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login',[AuthController::class,'index'])->name('admin.login.view')->middleware('guest');
@@ -34,6 +35,17 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::get('delete/{id}',[CategoryController::class,'delete'])->name($route.'delete');
         Route::post('store',[CategoryController::class,'store'])->name($route.'store');
         Route::post('update/{id}',[CategoryController::class,'update'])->name($route.'update');
+    });
+
+
+    Route::group(['prefix'=>'product'],function(){
+        $route = 'admin.product.';
+        Route::get('/',[ProductController::class,'index'])->name($route.'index');
+        Route::get('create',[ProductController::class,'create'])->name($route.'create');
+        Route::get('edit/{id}',[ProductController::class,'edit'])->name($route.'edit');
+        Route::get('delete/{id}',[ProductController::class,'delete'])->name($route.'delete');
+        Route::post('store',[ProductController::class,'store'])->name($route.'store');
+        Route::post('update/{id}',[ProductController::class,'update'])->name($route.'update');
     });
 
 
