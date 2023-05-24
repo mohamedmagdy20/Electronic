@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="{{asset('user/style/auth.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
 
 	</head>
 	<body>
@@ -56,10 +57,24 @@
 		</div>
 	</section>
 
-	<script src="{{asset('user/js/auth/jquery.min.js')}}"></script>
+	{{-- <script src="{{asset('user/js/auth/jquery.min.js')}}"></script> --}}
   <script src="{{asset('user/js/auth/popper.js')}}"></script>
   <script src="{{asset('user/js/auth/bootstrap.min.js')}}"></script>
   <script src="{{asset('user/js/auth/main.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
+  <script>
+    $(document).ready(function() {
+        toastr.options.timeOut = 10000;
+        @if (Session::has('error'))
+            toastr.error('{{ Session::get('error') }}');
+        @elseif(Session::has('success'))
+            toastr.success('{{ Session::get('success') }}');
+        @endif
+    });
+
+</script>
 
 	</body>
 </html>

@@ -20,7 +20,7 @@ class AuthController extends BaseController
     }
     public function registerView()
     {
-        return view('user.auth.login');
+        return view('user.auth.register');
     }
 
     public function register(RegisterRequest $request)
@@ -29,10 +29,11 @@ class AuthController extends BaseController
 
         if($request->file('img'))
         {
-            $data['img']  = $this->storeImage($request->file('img'),config('path.CLIENT_PATH'));
+            $data['img']  = $this->storeImage($data['img'],config('path.CLIENT_PATH'));
         }
         $data['password'] = Hash::make($data['password']);
-        return $this->model->create($data);
+        $this->model->create($data);
+        return redirect()->route('login')->with('Your Account Has Been Added Please Make Login');
     }
 
     public function loginView()

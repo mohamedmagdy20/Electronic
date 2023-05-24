@@ -5,7 +5,7 @@
             <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
             @if (auth('client')->user())
             <li><a href="{{url('user/profile')}}" class="open-login"><i class="fa fa-user"></i></a></li>
-            <li><a href="{{url('user/logout')}}" class=" btn  btn-sm">logout</a></li>  
+            <li><a href="{{route('logout')}}" class=" btn  btn-sm">logout</a></li>  
             @else
             <li><a href="{{url('userlogin')}}" class=" btn  btn-sm">login</a></li>  
             <li><a href="{{url('adduser')}}" class=" btn  btn-sm">Sign Up</a></li>  
