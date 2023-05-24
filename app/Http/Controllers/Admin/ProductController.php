@@ -22,8 +22,10 @@ class ProductController extends BaseController
 
     public function index()
     {
-        $admins = $this->getAll();
-        return view($this->adminView($this->view.'index'),compact('admins'));
+        $data = $this->getAll();
+        // $data =  Product::with('images')->get();
+        // return $data;
+        return view($this->adminView($this->view.'index'),compact('data'));
     }
 
     public function create()
@@ -40,17 +42,18 @@ class ProductController extends BaseController
 
     public function store(ProductRequest $request)
     {
+        // return $request->all();
         $data = $request->validated();
         
         $product =  $this->model->create($data);
 
-        $productImage = new ProductImage;
+        // $productImage = new ProductImage;
         if($request->images)
         {
             foreach($data['images'] as $img)
             {
                 $productImg = $this->storeImage($img,config('path.PRODUCT_PATH'));
-                $productImage->create([
+                ProductImage::create([
                     'img'=>$productImg,
                     'product_id'=>$product->id
                 ]);
@@ -79,14 +82,18 @@ class ProductController extends BaseController
             }
         }
         $product->update($data);
-        return redirect()->route('admins.index')->with('success','Admin Added');
+        return redirect()->route('admin.product.index')->with('success','Product Updated');
 
     }
 
     public function delete($id)
     {
         $data = $this->showData($id);
-        // $this->updateImage(null,$data->img,config('path.USER_PATH'));
+        $productImage = ProductImage::where('product_id',$id)->get();
+        foreach($productImage as $data)
+        {
+            $this->updateImage(null,$data->img,config('path.PRODUCT_PATH'));
+        }
         $data->delete();
         return redirect()->back()->with('success','Product Deleted');
     }

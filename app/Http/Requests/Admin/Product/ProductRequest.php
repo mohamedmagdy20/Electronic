@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'description'=>'required',
             'img'=>'image',
             'category_id'=>'required',
-            'images'=>'array'
+            'images'=>''
         ];
     }
 }

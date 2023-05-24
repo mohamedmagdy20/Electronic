@@ -18,7 +18,12 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
                     Categories
                 </a>
+               
                 
+                <a class="nav-link" href="{{route('admin.product.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
+                    Products
+                </a>
             </div>
         </div>
         {{-- <div class="sb-sidenav-footer">

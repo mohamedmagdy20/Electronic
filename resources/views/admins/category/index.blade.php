@@ -34,7 +34,7 @@
                             <td>{{$d->notes}}</td>
                             <td>
                                 <div class="py-1">
-                                    <img src="{{$d->img ? asset('uploads/category/'.$d->img) : asset('admin/profile.png')}}" style="width:50px" alt="image" />
+                                    <img src="{{$d->img ? asset('uploads/categories/'.$d->img) : asset('admin/profile.png')}}" style="width:50px" alt="image" />
                                 </div>
                             </td>
                             <td>

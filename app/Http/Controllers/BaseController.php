@@ -48,7 +48,7 @@ class BaseController extends Controller
 
     protected function storeImage($image , $filePath)
     {
-        $imageName = time().'.'.$image->extension();  
+        $imageName = time().$image->getClientOriginalName().'.'.$image->extension();  
         $path = $image->move(public_path($filePath), $imageName);
         return $imageName;    
     }   
