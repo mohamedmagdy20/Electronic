@@ -11,14 +11,14 @@
     @foreach($cats as $cat)
       <div class="col-lg-4 col-md-6">
         <div class="content">
-          <a class="text-decoration-none" href="{{url("user/category/$cat->catId")}}">
+          <a class="text-decoration-none" href="">
           <div class="content-color"></div>
           <div class="content-img text-center">
-            <img class="img-fluid" src="{{asset("uploads/$cat->catImg")}}" alt="">
+            <img class="img-fluid" src="{{asset("uploads/categories/$cat->img")}}" alt="">
           </div>
           <div class="content-body">
-            <h3>{{$cat->catName}}<br>Collection</h3>
-            <a href="{{url("user/category/$cat->catId")}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <h3>{{$cat->name}}<br>Collection</h3>
+            <a href="" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </a>
       </div>
@@ -36,12 +36,12 @@
   <div id="new" class="swiper mySwiper">
     <h2 class="text-center pt-5"><span class="text-danger">New </span>Products</h2>
     <div class="swiper-wrapper">
-      @foreach ( $newprods as $prod )
+      @foreach ( $products as $prod )
       <div class="swiper-slide">
-       <a class="text-decoration-none" href="{{url("user/product/$prod->id")}}">
+       <a class="text-decoration-none" href="">
         <div class="product text-center">
           <div class="prod-img">
-            <img src="{{url("uploads/$prod->img")}}" alt="" />
+            <img src="{{url("uploads/products/$prod->img")}}" alt="" />
           </div>
           <div class="prod-body pt-4">
             <h3 class="text-dark">{{$prod->name}}</h3>

@@ -29,8 +29,8 @@
         </form>
       </div>
       <div class="nav-cart col-lg-4 text-left">
-        @if (auth('client')::user())
-        <a href="{{url('user/cart')}}"><i class="fa fa-cart-plus"></i><span>{{Auth::user()->cart_items->count()}}</span></a>
+        @if (auth('client')->user())
+        <a href="{{url('user/cart')}}"><i class="fa fa-cart-plus"></i><span>0</span></a>
         @endif
       </div>
     </div>
@@ -64,7 +64,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               @foreach ($cats as $cat)
-              <li><a class="dropdown-item" href="{{url("user/category/$cat->catId")}}">{{$cat->catName}}</a></li>    
+              <li><a class="dropdown-item" href="{{url("user/category/$cat->id")}}">{{$cat->name}}</a></li>    
               @endforeach
             </ul>
           </li>
