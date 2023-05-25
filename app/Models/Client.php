@@ -23,6 +23,12 @@ class Client extends Authenticatable
         'address',
     ];
 
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class,'client_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

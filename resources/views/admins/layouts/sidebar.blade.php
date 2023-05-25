@@ -24,6 +24,12 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
                     Products
                 </a>
+
+
+                <a class="nav-link" href="{{route('admin.clients.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                    Clients
+                </a>
             </div>
         </div>
         {{-- <div class="sb-sidenav-footer">

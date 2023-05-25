@@ -8,12 +8,12 @@
           <ul>
             <p>Categories</p>
             @foreach ($cats as $cat)
-            <li><a class="" href="{{url("user/category/$cat->catId")}}">{{$cat->catName}}</a></li>    
+            <li><a class="" href="{{route('product.category',$cat->id)}}">{{$cat->name}}</a></li>    
             @endforeach
           </ul>
         </div>
         <div class="price">
-          <form action="{{url('user/pricebetween')}}" method="POST">
+          <form action="{{route('all.products')}}" method="GET">
             @csrf
             <input type="text" class="form-control mb-2" name="from" placeholder="from">
             <input type="text" class="form-control mb-2" name="to" placeholder="to">
@@ -24,17 +24,17 @@
       <div class="col-lg-9">
         <div class="items position-relative">
           <div class="row">
-            @foreach ($prods as $prod)
+            @foreach ($products as $prod)
             <div class="col-lg-4 col-md-6">
-                <a href="{{url("user/product/$prod->prodId")}}" class="text-decoration-none">
+                <a href="{{route('show.product',$prod->id)}}" class="text-decoration-none">
                 <div class="item text-center shadow p-3 mb-5 bg-white rounded">
                   <div class="item-img ">
-                    <img src="{{url("uploads/$prod->prodImg")}}" alt="">
+                    <img src="{{asset('uploads/products/'.$prod->images[0]->img)}}" alt="">
                   </div>
                   <div class="item-body">
                     <div class="item-body-text m-2">
-                    <span>{{$prod->catName}}</span>
-                    <div class="fs-5 pb-2 pt-3">{{$prod->prodName}}</div>
+                    <span>{{$prod->category->name}}</span>
+                    <div class="fs-5 pb-2 pt-3">{{$prod->name}}</div>
                     <div class="fs-6  pb-2"> ${{$prod->priceOut}} </div>
                   </div>
                   </div>
@@ -43,7 +43,7 @@
               </div>
             @endforeach
           </div>
-          <div class="text-center">{{$prods->onEachSide(1)->links()}}</div>
+          <div class="text-center">{{$products->onEachSide(1)->links()}}</div>
         </div>
       </div>
     </div>

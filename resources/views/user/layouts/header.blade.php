@@ -5,10 +5,10 @@
             <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
             @if (auth('client')->user())
             <li><a href="{{url('user/profile')}}" class="open-login"><i class="fa fa-user"></i></a></li>
-            <li><a href="{{route('logout')}}" class=" btn  btn-sm">logout</a></li>  
+            <li><a href="{{route('client.logout')}}" class=" btn  btn-sm">logout</a></li>  
             @else
-            <li><a href="{{url('userlogin')}}" class=" btn  btn-sm">login</a></li>  
-            <li><a href="{{url('adduser')}}" class=" btn  btn-sm">Sign Up</a></li>  
+            <li><a href="{{route('login')}}" class=" btn  btn-sm">login</a></li>  
+            <li><a href="{{route('register')}}" class=" btn  btn-sm">Sign Up</a></li>  
           
             @endif
 
@@ -17,20 +17,20 @@
     </div>
     <div class="main-nav row align-items-center text-center  ">
       <div class="nav-logo col-lg-4">
-        <a href="{{url("user/index")}}">
-        <img src="{{asset('images/logo.webp')}}" alt="">
+        <a href="{{route('home')}}">
+        <img src="{{asset('user/images/logo.webp')}}" alt="">
       </a>
       </div>
       <div class="nav-search col-lg-4">
-        <form action="{{url("user/Search")}}" method="POST" class="d-flex">
+        <form action="{{route('search.products')}}" method="POST" class="d-flex">
           @csrf
-          <input type="text" id="search" name="search" class="form-control me-2 typeahead" placeholder="Search Product">
+          <input type="text" id="search" name="name" class="form-control me-2 typeahead" placeholder="Search Product">
           <input type="submit" class="btn btn-outline-danger" value="Search">
         </form>
       </div>
       <div class="nav-cart col-lg-4 text-left">
         @if (auth('client')->user())
-        <a href="{{url('user/cart')}}"><i class="fa fa-cart-plus"></i><span>0</span></a>
+        <a href="{{route('cart')}}"><i class="fa fa-cart-plus"></i><span>{{auth('client')->user()->cart->count()}}</span></a>
         @endif
       </div>
     </div>
@@ -44,14 +44,14 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url("user/index")}}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url("user/showproducts")}}">Shop</a>
+            <a class="nav-link active" aria-current="page" href="{{route('all.products')}}">Shop</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#new">New Products</a>
+            <a class="nav-link active" aria-current="page" href="{{route('new.products')}}">New Products</a>
           </li>
 
           
@@ -64,7 +64,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               @foreach ($cats as $cat)
-              <li><a class="dropdown-item" href="{{url("user/category/$cat->id")}}">{{$cat->name}}</a></li>    
+              <li><a class="dropdown-item" href="{{route('product.category',$cat->id)}}">{{$cat->name}}</a></li>    
               @endforeach
             </ul>
           </li>

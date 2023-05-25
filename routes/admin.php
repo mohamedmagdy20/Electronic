@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,13 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::get('delete/{id}',[ProductController::class,'delete'])->name($route.'delete');
         Route::post('store',[ProductController::class,'store'])->name($route.'store');
         Route::post('update/{id}',[ProductController::class,'update'])->name($route.'update');
+    });
+
+
+    Route::group(['prefix'=>'clients'],function(){
+        $route = 'admin.clients.';
+        Route::get('/',[ClientController::class,'index'])->name($route.'index');
+        Route::get('delete/{id}',[ClientController::class,'delete'])->name($route.'delete');
     });
 
 

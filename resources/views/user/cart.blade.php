@@ -14,7 +14,7 @@
         </div>
         <div class="cart-total d-flex justify-content-center">
             <div class="pe-2">Cart:</div>
-            <div>{{$cartcount->count}}</div>
+            <div>{{$cartCount}}</div>
         </div>
     </div>
     {{-- @foreach ($carts as $item )
@@ -32,48 +32,53 @@
               </tr>
         </thead>
         <tbody>
-          @foreach ($carts as $index => $item )
+          @foreach ($data as $index => $item )
           <tr class="text-center">
-          <th scope="row">{{$index}}</th>
-          <th scope="">{{$item->prodName}}</th>
-          <th scope="">{{$item->priceOut}}</th>
-          <th scope="">{{$item->quantity}}</th>
-          <th class="imgrow"><img  src="{{url("uploads/$item->prodImg")}}" alt="Img"></th>
-          <th scope=""><a href="{{url("user/deletecart/$item->cartId")}}"><i class="fas fa-trash text-danger"></i></a></th>     
+          <th scope="row">{{$index+1}}</th>
+          <th scope="">{{$item->product->name}}</th>
+          <th scope="">{{$item->product->priceOut}}</th>
+          <th scope="">{{$item->count}}</th>
+          <th class="imgrow"><img  src="{{asset('uploads/products/'.$item->product->images[0]->img)}}" alt="Img"></th>
+          <th scope=""><a href="{{route('cart.delete',$item->id)}}" class="delete-confirm"><i class="fas fa-trash text-danger"></i></a></th>     
         </tr>
           @endforeach
 
         </tbody>
       </table>
     <div class="pt-4 pb-5">
-    <form method="POST" action="/user/checkout">
+    <form method="POST" action="{{route('store.orders')}}">
         <div class="fs-3 fw-bolder pb-3">Fill Your info</div>
         @csrf
         <label class="mb-2 fw-bold text-danger" for="">Enter Address</label>
-        <input type="text" name="address"  class="form-control mb-3" placeholder="Address"/>
+        <input type="text" name="address"  class="form-control mb-3" value="{{auth('client')->user()->address}}" placeholder="Address"/>
         @error('address')
         <div class="text-center alert alert-danger">
             <h6>{{$message}}</h6> 
         </div>
         @enderror
+        <input type="hidden" name="total" value="{{$total}}">
         <label class="mb-2 fw-bold text-danger" for="">Phone</label>
-        <input type="text" name="phone" class="form-control mb-3" placeholder="Phone"/>
+        <input type="text" name="phone" class="form-control mb-3" value="{{auth('client')->user()->phone}}" placeholder="Phone"/>
         @error('phone')
         <div class="text-center alert alert-danger">
             <h6>{{$message}}</h6> 
         </div>
         @enderror
-        <label class="mb-2 fw-bold text-danger" for="">Enter Bank</label>
-        <select id="input" name="safes" class="form-select mb-3" aria-label="Default select example">
-            @foreach ($safes as $cat)
-                <option value="{{$cat->id}}">{{$cat->name}}</option>    
-            @endforeach     
-          </select>
-          @error("safes")
-          <div id="success" class="text-center alert alert-danger">
-              <h6>{{$message}}</h6> 
+
+        <label for="">Paymeny Method</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="manual" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Manual
+            </label>
           </div>
-          @enderror
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="paypal">
+            <label class="form-check-label" for="flexRadioDefault2">
+              PayPal
+            </label>
+          </div>
+
         <button type="submit" class="btn btn-danger">Submit Order</button>
     </form>
 </div>

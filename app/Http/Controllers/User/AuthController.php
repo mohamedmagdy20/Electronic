@@ -55,7 +55,7 @@ class AuthController extends BaseController
     public function destroy()
     {
         auth('client')->logout();
-        return redirect()->route('admin.login.view');
+        return redirect()->route('home');
     }
 
     
