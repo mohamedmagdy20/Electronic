@@ -26,7 +26,7 @@ class BaseController extends Controller
     {
         return $this->baseWebsite . $view;
     }
-    protected function getAll()
+    protected function getAll() 
     {
         return  $this->model->query()->get();
     }

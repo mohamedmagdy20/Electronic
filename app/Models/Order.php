@@ -13,6 +13,7 @@ class Order extends Model
         'phone',
         'address',
         'type',
+        'code',
         'status',
         'total',
         'client_id'
@@ -22,4 +23,9 @@ class Order extends Model
     {
         return $this->belongsTo(Client::class,'client_id');
     }    
+
+    public function order_details()
+    {
+        return $this->hasMany(OrderDetails::class,'order_id');
+    }
 }

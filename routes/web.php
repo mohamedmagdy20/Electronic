@@ -44,6 +44,11 @@ Route::group(['controller'=>CartController::class],function(){
 
 Route::group(['controller'=>OrderController::class],function(){
    Route::post('/store/cart','checkOut')->name('store.orders');
+   Route::get('payment','payment')->name('payment');
+   Route::get('payment/success','success')->name('payment.success');
+   Route::get('cencel','cencel')->name('cencel');
+
+   
 });
 Route::group(['middleware'=>'auth:client'],function () {
 });

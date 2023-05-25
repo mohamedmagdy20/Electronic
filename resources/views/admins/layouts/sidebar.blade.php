@@ -30,6 +30,13 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                     Clients
                 </a>
+
+
+                
+                <a class="nav-link" href="{{route('admin.orders.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
+                    Orders
+                </a>
             </div>
         </div>
         {{-- <div class="sb-sidenav-footer">
