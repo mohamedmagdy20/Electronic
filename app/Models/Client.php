@@ -28,6 +28,10 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Cart::class,'client_id');
     }
+    public function order()
+    {
+        return $this->hasMany(Order::class,'client_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

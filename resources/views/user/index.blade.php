@@ -61,9 +61,9 @@
     <div class="container">
     <div class="fs-4 fw-bold pb-3 pt-4"> <span class="text-danger">Send</span> a Message</div>
     <div>
-      <form action="{{url('user/storecomplements')}}" method="POST">
+      <form action="{{route('send.message')}}" method="POST">
         @csrf
-        <textarea name="com" class="form-control" id="" cols="30" rows="10"></textarea>
+        <textarea name="message" class="form-control" id="" cols="30" rows="10"></textarea>
         <button type="submit" class="btn btn-danger mt-2">Submit</button>
       </form>
     </div>

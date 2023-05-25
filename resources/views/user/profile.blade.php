@@ -3,11 +3,14 @@
 <section class="profile container pt-3 pb-3">
     <div class="text-center">
         <div class="img-profile p-3">
-            <img src="{{url("images-users/$profile->img")}}" alt="">
+            <img src="{{asset('uploads/clients/'.auth()->user()->img)}}" alt="">
         </div>
         <div class="profile-details">
-            <div class="profile-email">{{$profile->name}}</div>
-            <div class="profile-email">{{$profile->email}}</div>
+            <div class="profile-email">{{auth()->user()->name}}</div>
+            <div class="profile-email">{{auth()->user()->email}}</div>
+            <div class="profile-email">{{auth()->user()->phone}}</div>
+            <div class="profile-email">{{auth()->user()->address}}</div>
+       
             {{-- <div><a href="{{url("user/editprofile/$profile->id")}}" class="btn btn-secondary">Update Profile</a></div> --}}
         </div>
     </div>
@@ -25,13 +28,13 @@
             </tr>
         </thead>
         <tbody>
-        @if (! $orders->isEmpty())
-          @foreach ($orders as $index => $item )
+        @if (! $data->isEmpty())
+          @foreach ($data as $index => $item )
           <tr class="text-center">
           <th scope="row">{{$index}}</th>
-          <th scope="">{{$item->prodName}}</th>
-          <th scope="">{{$item->priceOut}}</th>
-          <th class="imgrow"><img  src="{{url("uploads/$item->img")}}" alt="Img"></th>
+          <th scope="">{{$item->order_details->product->name}}</th>
+          <th scope="">{{$item->order_details->product->priceOut}}</th>
+          <th class="imgrow"><img  src="{{asset("uploads/products/".$item->order_details->product->images[0]->img)}}" alt="Img"></th>
           <th scope="">{{$item->address}}</th>
           <th scope="">{{$item->phone}}</th>
           <th scope="">{{$item->created_at}}</th>  

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -63,8 +64,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         Route::get('/cencel/order/{id}',[OrderController::class,'cencelOrder'])->name($route.'cencel.order');
         Route::get('/approve/order/{id}',[OrderController::class,'approveOrder'])->name($route.'approve.order');
         Route::get('/show/order/{id}',[OrderController::class,'showOrder'])->name($route.'show.order');
+    });
 
 
+    
+    Route::group(['prefix'=>'message'],function(){
+        $route = 'admin.messages.';
+        Route::get('/',[MessageController::class,'index'])->name($route.'index');
+        Route::get('/message/delete/{id}',[MessageController::class,'delete'])->name($route.'delete');
     });
 
 

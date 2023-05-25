@@ -37,6 +37,12 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
                     Orders
                 </a>
+
+                      
+                <a class="nav-link" href="{{route('admin.messages.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-tablet"></i></div>
+                    Message
+                </a>
             </div>
         </div>
         {{-- <div class="sb-sidenav-footer">

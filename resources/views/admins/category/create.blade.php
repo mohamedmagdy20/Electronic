@@ -1,10 +1,10 @@
 @extends('admins.layouts.app')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Users</h1>
+    <h1 class="mt-4">Category</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('admin.admins.index')}}">Category</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Category</a></li>
         <li class="breadcrumb-item active">Add Category</li>
     </ol>
     

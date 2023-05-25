@@ -4,17 +4,17 @@
     <h1 class="mt-4">Users</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('admin.admins.index')}}">Category</a></li>
-        <li class="breadcrumb-item active">Add Category</li>
+        <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Category</a></li>
+        <li class="breadcrumb-item active">Edit Category</li>
     </ol>
     
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Add Category
+           Edit Category
         </div>
         <div class="card-body">
-            <form action="{{route('admin.category.update')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.category.update',$data->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
@@ -50,6 +50,13 @@
                     </div>
                     <div class="col-md-12">
                         <div id="img-preview"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{asset('uploads/categories/'.$data->img)}}" style="width: 300px;" alt="">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-12">

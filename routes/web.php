@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
@@ -17,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['controller'=>AuthController::class],function(){
-    Route::get('/login', 'loginView')->name('login.view');
-    Route::post('/login','login')->name('login');
-    Route::get('/register','registerView')->name('register.view');
-    Route::post('/register','register')->name('register');
+    Route::get('/login', 'loginView')->name('login.view')->middleware('guest:client');
+    Route::post('/login','login')->name('login')->middleware('guest:client');
+    Route::get('/register','registerView')->name('register.view')->middleware('guest:client');
+    Route::post('/register','register')->name('register')->middleware('guest:client');
     Route::get('/logout','destroy')->name('client.logout');
+    Route::get('profile','profile')->name('client.profile')->middleware('auth:client');
 });
 // Route::get('/', function () {
 //     return view('welcome');
@@ -35,20 +37,18 @@ Route::group(['controller'=>HomeController::class],function(){
     Route::get('/product/{id}','showProduct')->name('show.product');
 });
 
-Route::group(['controller'=>CartController::class],function(){
+Route::group(['controller'=>CartController::class,'middleware'=>'auth:client'],function(){
     Route::get('/cart','index')->name('cart');
     Route::post('/store','store')->name('store.cart');
     Route::get('cart/delete/{id}','delete')->name('cart.delete');
 });
 
 
-Route::group(['controller'=>OrderController::class],function(){
+Route::group(['controller'=>OrderController::class,'middleware'=>'auth:client'],function(){
    Route::post('/store/cart','checkOut')->name('store.orders');
    Route::get('payment','payment')->name('payment');
    Route::get('payment/success','success')->name('payment.success');
    Route::get('cencel','cencel')->name('cencel');
+});
 
-   
-});
-Route::group(['middleware'=>'auth:client'],function () {
-});
+Route::post('send/message',[MessageController::class,'sendMessage'])->name('send.message');

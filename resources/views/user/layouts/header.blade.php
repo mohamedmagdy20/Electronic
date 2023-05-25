@@ -4,7 +4,7 @@
              <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
             <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
             @if (auth('client')->user())
-            <li><a href="{{url('user/profile')}}" class="open-login"><i class="fa fa-user"></i></a></li>
+            <li><a href="{{route('client.profile')}}" class="open-login"><i class="fa fa-user"></i></a></li>
             <li><a href="{{route('client.logout')}}" class=" btn  btn-sm">logout</a></li>  
             @else
             <li><a href="{{route('login')}}" class=" btn  btn-sm">login</a></li>  
