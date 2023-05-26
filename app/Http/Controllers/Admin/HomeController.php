@@ -14,10 +14,16 @@ class HomeController extends Controller
     //
     public function index()
     {
+        $total = 0;
         $products = Product::count();
         $category = Category::count();
         $orders = Order::count();
         $client = Client::count();
-        return view('admins.index',compact('products','category','orders','client'));
+        $sumMoney = Order::get('total');
+        foreach($sumMoney as $s)
+        {
+            $total+=$s->total;
+        }
+        return view('admins.index',compact('products','category','orders','client','total'));
     }
 }

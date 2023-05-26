@@ -8,6 +8,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Client;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -61,11 +62,12 @@ class AuthController extends BaseController
     
     public function profile()
     {
-        $data = Order::with(['order_details'=>function($d){
-            $d->with(['product'=>function($q){
-                $q->with('images');
-            }]);
-        }])->where('client_id')->get();
+        $data = OrderDetails::with(['order'=>function($q){
+            return $q->where('client_id',auth('client')->user()->id);
+        }])->with(['product'=>function($d){
+            $d->with('images');
+        }])->get();
+        // return $data;
         return view('user.profile',compact('data'));
     }
 }

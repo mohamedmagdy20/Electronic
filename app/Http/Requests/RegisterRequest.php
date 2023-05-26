@@ -26,6 +26,7 @@ class RegisterRequest extends FormRequest
             'email'=>'required|email|unique:clients,email',
             'password'=>'required|confirmed',
             'img'=>'image',
+            'phone'=>'required',
             'address'=>'nullable'
         ];
     }

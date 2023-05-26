@@ -32,11 +32,11 @@
           @foreach ($data as $index => $item )
           <tr class="text-center">
           <th scope="row">{{$index}}</th>
-          <th scope="">{{$item->order_details->product->name}}</th>
-          <th scope="">{{$item->order_details->product->priceOut}}</th>
-          <th class="imgrow"><img  src="{{asset("uploads/products/".$item->order_details->product->images[0]->img)}}" alt="Img"></th>
-          <th scope="">{{$item->address}}</th>
-          <th scope="">{{$item->phone}}</th>
+          <th scope="">{{$item->product->name}}</th>
+          <th scope="">{{$item->product->priceOut}}</th>
+          <th class="imgrow"><img  src="{{asset("uploads/products/".$item->product->images[0]->img)}}" alt="Img"></th>
+          <th scope="">{{$item->order->address}}</th>
+          <th scope="">{{$item->order->phone}}</th>
           <th scope="">{{$item->created_at}}</th>  
         </tr>
         @endforeach

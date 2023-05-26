@@ -35,8 +35,7 @@ class OrderController extends Controller
             return redirect()->route('home')->with('success','Order Done');
         }else if($request->type == 'paypal'){
             // Paypal Integration
-            // return 'paypal';
-            $order = Order::create(array_merge($request->all(),['client_id'=>auth('client')->user()->id,'status'=>'pending']));
+            $order = Order::create(array_merge($request->all(),['client_id'=>auth('client')->user()->id,'status'=>'pending','code'=>mt_rand(10000000,99999999)]));
             $carts = Cart::where('client_id',auth('client')->user()->id)->get();
             foreach($carts as $cart)
             {

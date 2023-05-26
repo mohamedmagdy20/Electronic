@@ -51,4 +51,4 @@ Route::group(['controller'=>OrderController::class,'middleware'=>'auth:client'],
    Route::get('cencel','cencel')->name('cencel');
 });
 
-Route::post('send/message',[MessageController::class,'sendMessage'])->name('send.message');
+Route::post('send/message',[MessageController::class,'store'])->name('send.message');
